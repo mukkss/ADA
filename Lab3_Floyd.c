@@ -1,16 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define MAX 10
-int D[MAX][MAX], n;
-void warshall()
+#define min(c, d) (c < d ? c : d)
+int dist[MAX][MAX], n;
+void floyd()
 {
     int i, j, k;
     for (k = 1; k <= n; k++)
-    {
+    { // Record the lengths of shortest path
         for (i = 1; i <= n; i++)
         {
             for (j = 1; j <= n; j++)
             {
-                D[i][j] = D[i][j] || (D[i][k] && D[k][j]);
+                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
             }
         }
     }
@@ -20,21 +22,21 @@ void main()
     int i, j;
     printf("Enter the number of vertices:\n");
     scanf("%d", &n);
-    printf("Enter the adjacency matrix:\n");
+    printf("Enter the distance matrix:\n"); // Read distance matrix
     for (i = 1; i <= n; i++)
     {
         for (j = 1; j <= n; j++)
         {
-            scanf("%d", &D[i][j]);
+            scanf("%d", &dist[i][j]);
         }
     }
-    warshall();
-    printf("Transitive closure of digraph is:\n");
+    floyd();
+    printf("\nAll pairs shortest path matrix is:\n");
     for (i = 1; i <= n; i++)
     {
         for (j = 1; j <= n; j++)
         {
-            printf("%d\t", D[i][j]);
+            printf("%d\t", dist[i][j]);
         }
         printf("\n");
     }
