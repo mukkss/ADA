@@ -42,7 +42,7 @@ void prims()
                 v = j;
             }
         }
-        update_edges(u, v, i, &mincost, lowcost, visited); // Calling the new function
+        update(u, v, i, &mincost, lowcost, visited); // Calling the new function
     }
     printf("\n\nThe edges of this minimum cost spanning tree are\n");
     for (i = 1; i <= n - 1; i++)
@@ -52,7 +52,7 @@ void prims()
     printf("\nMinimum cost Spanning Tree is: %d\n", mincost);
 }
 
-void update_edges(int u[], int v, int i, int *mincost, int lowcost[], int visited[])
+void update(int u[], int v, int i, int *mincost, int lowcost[], int visited[])
 {
     edges[i][1] = u[v];
     edges[i][2] = v;
