@@ -2,6 +2,7 @@
 #define INFI 99
 int edges[10][3], n, wt[10][10];
 void prims();
+void update_edges(int u[], int v, int i, int *mincost, int lowcost[], int visited[]);
 void main()
 {
     int i, j;
@@ -41,20 +42,7 @@ void prims()
                 v = j;
             }
         }
-        // Save edge
-        edges[i][1] = u[v];
-        edges[i][2] = v;
-        mincost += lowcost[v];
-        visited[v] = 1;
-        lowcost[v] = INFI;
-        for (j = 2; j <= n; j++)
-        {
-            if (wt[v][j] < lowcost[j] && !visited[j])
-            {
-                lowcost[j] = wt[v][j];
-                u[j] = v;
-            }
-        }
+        update_edges(u, v, i, &mincost, lowcost, visited); // Calling the new function
     }
     printf("\n\nThe edges of this minimum cost spanning tree are\n");
     for (i = 1; i <= n - 1; i++)
@@ -62,4 +50,21 @@ void prims()
         printf("(%d,%d)\n", edges[i][1], edges[i][2]);
     }
     printf("\nMinimum cost Spanning Tree is: %d\n", mincost);
+}
+
+void update_edges(int u[], int v, int i, int *mincost, int lowcost[], int visited[])
+{
+    edges[i][1] = u[v];
+    edges[i][2] = v;
+    *mincost += lowcost[v];
+    visited[v] = 1;
+    lowcost[v] = INFI;
+    for (int j = 2; j <= n; j++)
+    {
+        if (wt[v][j] < lowcost[j] && !visited[j])
+        {
+            lowcost[j] = wt[v][j];
+            u[j] = v;
+        }
+    }
 }
