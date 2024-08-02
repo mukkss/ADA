@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define min(a,b)(a > b? a : b)
+#define max(a,b)(a > b? a : b)
 int val[20], wt[20], n, c, v[20][20];
 // Build a matrix (v[i][j]) with the weight bounds as the columns and the number of items as the rows.
 int knap()
