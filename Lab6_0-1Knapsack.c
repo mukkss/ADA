@@ -21,7 +21,7 @@ int knap()
                 }
                 else
                 {
-                    v[i][j] = min(v[i - 1][j], (v[i - 1][j - wt[i]] + val[i]));
+                    v[i][j] = max(v[i - 1][j], (v[i - 1][j - wt[i]] + val[i]));
                 }
             }
         }
