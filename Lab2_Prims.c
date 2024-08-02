@@ -2,7 +2,7 @@
 #define INFI 99
 int edges[10][3], n, wt[10][10];
 void prims();
-void update_edges(int u[], int v, int i, int *mincost, int lowcost[], int visited[]);
+void update(int u[], int v, int i, int *mincost, int lowcost[], int visited[]);
 void main()
 {
     int i, j;
