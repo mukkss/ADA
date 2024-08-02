@@ -1,8 +1,5 @@
 #include <stdio.h>
-int my_max(int a, int b)
-{
-    return (a > b) ? a : b;
-}
+#define min(a,b)(a > b? a : b)
 int val[20], wt[20], n, c, v[20][20];
 // Build a matrix (v[i][j]) with the weight bounds as the columns and the number of items as the rows.
 int knap()
@@ -24,7 +21,7 @@ int knap()
                 }
                 else
                 {
-                    v[i][j] = my_max(v[i - 1][j], (v[i - 1][j - wt[i]] + val[i]));
+                    v[i][j] = min(v[i - 1][j], (v[i - 1][j - wt[i]] + val[i]));
                 }
             }
         }
